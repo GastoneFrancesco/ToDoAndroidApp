@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/texture_background">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:text="Cose da fare"
+        android:textAlignment="center"
+        android:textSize="40dp">
+
+    </TextView>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        android:layout_above="@+id/buttonAggiungiToDo"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="20dp"
+        android:divider="#000000"
+        android:dividerHeight="1dp">
+
+    </ListView>
+
+    <Button
+        android:id="@+id/buttonAggiungiToDo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/text_plus_icon">
+
+    </Button>
+
+    <android.inputmethodservice.ExtractEditText
+        android:id="@+id/editText"
+        android:layout_below="@+id/listView"
+        android:layout_toLeftOf="@+id/buttonAggiungiToDo"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="#00AE04"
+        android:hint="Aggiungi qualcosa"
+        android:textColorHint="#373737">
+
+    </android.inputmethodservice.ExtractEditText>
+
+</RelativeLayout>
