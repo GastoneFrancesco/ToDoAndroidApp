@@ -13,7 +13,6 @@ import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import it.francescogastone.todoandroidapp.Applicazione;

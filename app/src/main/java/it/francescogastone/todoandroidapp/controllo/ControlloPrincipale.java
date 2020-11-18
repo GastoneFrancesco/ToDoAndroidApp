@@ -1,11 +1,14 @@
 package it.francescogastone.todoandroidapp.controllo;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import it.francescogastone.todoandroidapp.Applicazione;
 import it.francescogastone.todoandroidapp.activity.ActivityPrincipale;
@@ -38,6 +41,9 @@ public class ControlloPrincipale {
                 vistaPrincipale.aggiornaListView();
                 vistaPrincipale.clearEditText();
                 Applicazione.getInstance().getModello().putBean("LISTA", listaToDo);
+
+                //Applicazione.getInstance().saveArray((List<String>) Applicazione.getInstance().getModello().getBean("LISTA"));
+
             } else {
                 Log.d("Button add", "Edit text vuoto");
             }
@@ -60,4 +66,5 @@ public class ControlloPrincipale {
 
         }
     }
+
 }

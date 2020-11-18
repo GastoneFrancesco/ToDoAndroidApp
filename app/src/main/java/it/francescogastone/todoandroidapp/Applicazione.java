@@ -2,11 +2,14 @@ package it.francescogastone.todoandroidapp;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import it.francescogastone.todoandroidapp.controllo.ControlloPrincipale;
 import it.francescogastone.todoandroidapp.modello.Modello;
@@ -25,8 +28,7 @@ public class Applicazione extends Application {
         super.onCreate();
         singleton = (Applicazione) getApplicationContext();
         singleton.registerActivityLifecycleCallbacks(new GestoreAttivita());
-        List<String> listaToDo = new ArrayList<>();
-        Applicazione.getInstance().getModello().putBean("LISTA", listaToDo);
+
     }
 
     Activity currentActivity = null;
@@ -48,7 +50,11 @@ public class Applicazione extends Application {
     private class GestoreAttivita implements ActivityLifecycleCallbacks {
         @Override
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-            //Log.i(TAG, "onActivityCreated: " + activity);
+            Log.i(TAG, "onActivityCreated: " + activity);
+
+            List<String> listaToDo = getArray();
+            Applicazione.getInstance().getModello().putBean("LISTA", listaToDo);
+            Log.i("Lista at activity created", listaToDo.toString());
         }
 
         @Override
@@ -77,6 +83,7 @@ public class Applicazione extends Application {
             if (currentActivity == activity) {
                 Log.d(TAG, "currentActivity stopped: " + activity);
                 currentActivity = null;
+                saveArray((List<String>)Applicazione.getInstance().getModello().getBean("LISTA"));
             }
         }
 
@@ -84,5 +91,23 @@ public class Applicazione extends Application {
         public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
             //Log.d(TAG, "onActivitySaveInstanceState: " + activity);
         }
+    }
+
+    public boolean saveArray(List<String> lista){
+        SharedPreferences sp = Applicazione.getInstance().getSharedPreferences("Pref Lista", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+
+        Set<String> set = new HashSet<>();
+        set.addAll(lista);
+        editor.putStringSet("list", set);
+        return editor.commit();
+    }
+
+    public ArrayList<String> getArray() {
+        SharedPreferences sp = this.getSharedPreferences("Pref Lista", Activity.MODE_PRIVATE);
+
+        Set<String> set = sp.getStringSet("list", new HashSet<String>());
+
+        return new ArrayList<String>(set);
     }
 }
