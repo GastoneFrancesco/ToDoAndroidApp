@@ -20,6 +20,12 @@
 
         </activity>
 
+        <activity
+            android:name=".activity.ActivitySeconda"
+            android:parentActivityName=".activity.ActivityPrincipale"
+            android:theme="@style/AppTheme">
+        </activity>
+
     </application>
 
 
