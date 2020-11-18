@@ -1,7 +1,6 @@
 package it.francescogastone.todoandroidapp.vista;
 
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import androidx.annotation.LayoutRes;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
@@ -38,12 +36,12 @@ public class VistaPrincipale extends Fragment {
         listView.setAdapter(adapter);
 
         //PROVA CANCELLA TUTTO
-
+        //////////////////////////////////////////
         Button button = fragment.findViewById(R.id.buttonAggiungiToDo);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(editText.getText().toString().equals("")){
+                if(editText.getText().toString().trim().isEmpty()){
                     Log.d("Mex", "Vuoto");
 
                 } else {
@@ -54,7 +52,6 @@ public class VistaPrincipale extends Fragment {
 
             }
         });
-
 
         return fragment;
     }
