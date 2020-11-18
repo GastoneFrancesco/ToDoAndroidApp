@@ -1,5 +1,6 @@
 package it.francescogastone.todoandroidapp.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,4 +20,8 @@ public class ActivityPrincipale extends AppCompatActivity {
         return (VistaPrincipale)this.getSupportFragmentManager().findFragmentById(R.id.vistaPrincipale);
     }
 
+    public void schermoSecondo() {
+        Intent intent = new Intent(getApplicationContext(), ActivitySeconda.class);
+        startActivity(intent);
+    }
 }
