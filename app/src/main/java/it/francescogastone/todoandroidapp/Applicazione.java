@@ -28,7 +28,6 @@ public class Applicazione extends Application {
         super.onCreate();
         singleton = (Applicazione) getApplicationContext();
         singleton.registerActivityLifecycleCallbacks(new GestoreAttivita());
-
     }
 
     Activity currentActivity = null;
@@ -54,7 +53,6 @@ public class Applicazione extends Application {
 
             List<String> listaToDo = getArray();
             Applicazione.getInstance().getModello().putBean("LISTA", listaToDo);
-            Log.i("Lista at activity created", listaToDo.toString());
         }
 
         @Override
