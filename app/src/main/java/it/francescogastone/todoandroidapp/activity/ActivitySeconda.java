@@ -10,7 +10,7 @@ import it.francescogastone.todoandroidapp.vista.VistaSeconda;
 public class ActivitySeconda extends AppCompatActivity {
 
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_seconda);
     }
