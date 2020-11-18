@@ -15,7 +15,7 @@ public class ActivitySeconda extends AppCompatActivity {
         this.setContentView(R.layout.activity_seconda);
     }
 
-    public VistaSeconda getProvaView(){
+    public VistaSeconda getVistaSeconda(){
         return (VistaSeconda)this.getSupportFragmentManager().findFragmentById(R.id.vistaSeconda);
     }
 }
