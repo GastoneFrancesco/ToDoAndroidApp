@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,8 +22,6 @@ import it.francescogastone.todoandroidapp.R;
 public class VistaPrincipale extends Fragment {
 
     private ListView listView;
-
-    private List<String> items = new ArrayList<>();
     private ArrayAdapter<String> adapter;
     private EditText editText;
 
@@ -32,28 +31,28 @@ public class VistaPrincipale extends Fragment {
         listView = fragment.findViewById(R.id.listView);
         editText = fragment.findViewById(R.id.editText);
 
-        adapter = new ArrayAdapter<String>(Applicazione.getInstance().getApplicationContext(), R.layout.list_view_theme, items);
+        adapter = new ArrayAdapter<String>(Applicazione.getInstance().getApplicationContext(), R.layout.list_view_theme,
+                (List<String>)Applicazione.getInstance().getModello().getBean("LISTA"));
         listView.setAdapter(adapter);
 
-        //PROVA CANCELLA TUTTO
-        //////////////////////////////////////////
         Button button = fragment.findViewById(R.id.buttonAggiungiToDo);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(editText.getText().toString().trim().isEmpty()){
-                    Log.d("Mex", "Vuoto");
+        button.setOnClickListener(Applicazione.getInstance().getControlloPrincipale().getAzioneAggiungiToDo());
 
-                } else {
-                    items.add(editText.getText().toString());
-                    adapter.notifyDataSetChanged();
-                    editText.setText("");
-                }
-
-            }
-        });
+        listView.setOnItemClickListener(Applicazione.getInstance().getControlloPrincipale().getAzioneClickListViewItem());
 
         return fragment;
+    }
+
+    public String getTestoToDo(){
+        return this.editText.getText().toString();
+    }
+
+    public void aggiornaListView(){
+        this.adapter.notifyDataSetChanged();
+    }
+
+    public void clearEditText(){
+        this.editText.setText("");
     }
 
 }

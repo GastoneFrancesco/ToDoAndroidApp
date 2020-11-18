@@ -5,6 +5,12 @@ import android.app.Application;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import it.francescogastone.todoandroidapp.controllo.ControlloPrincipale;
+import it.francescogastone.todoandroidapp.modello.Modello;
+
 public class Applicazione extends Application {
 
     public static final String TAG = Applicazione.class.getSimpleName();
@@ -19,9 +25,25 @@ public class Applicazione extends Application {
         super.onCreate();
         singleton = (Applicazione) getApplicationContext();
         singleton.registerActivityLifecycleCallbacks(new GestoreAttivita());
+        List<String> listaToDo = new ArrayList<>();
+        Applicazione.getInstance().getModello().putBean("LISTA", listaToDo);
     }
 
     Activity currentActivity = null;
+    Modello modello = new Modello();
+    ControlloPrincipale controlloPrincipale = new ControlloPrincipale();
+
+    public Activity getCurrentActivity() {
+        return currentActivity;
+    }
+
+    public Modello getModello() {
+        return modello;
+    }
+
+    public ControlloPrincipale getControlloPrincipale() {
+        return controlloPrincipale;
+    }
 
     private class GestoreAttivita implements ActivityLifecycleCallbacks {
         @Override
